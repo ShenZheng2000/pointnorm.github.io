@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PointNorm: Dual Normalization is All You Need for Point Cloud Analysis">
+  <meta name="keywords" content="InstanceWarp, Domain Adaptation, Bad Weather">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PointNorm: Dual Normalization is All You Need for Point Cloud Analysis</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.jpg">
+  <link rel="stylesheet" href="./static/css/video-grid.css">
+  <link rel="stylesheet" href="./static/css/image.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+
+      <a class="navbar-item" href="https://shenzheng2000.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <span class="navbar-item">
+        PointNorm: Dual Normalization is All You Need for Point Cloud Analysis
+      </span>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PointNorm: Dual Normalization is All You Need for Point Cloud Analysis</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://shenzheng2000.github.io/">Shen Zheng</a>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=6jJqKrsAAAAJ&hl=en">Jinqian Pan</a>,</span>
+                <span class="author-block">
+                  <a href="https://louey233.github.io/">Changjie Lu</a>,</span>
+            <span class="author-block">
+              <a href="https://csmt.wku.edu.cn/en/node/1844">Gaurav Gupta</a></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Wenzhou-Kean University</span>
+          </div>
+          <div class="is-size-5 publication-authors" style="margin-top: 1em;">
+            <strong>Accepted to IJCNN 2023 (Oral)</strong>
+          </div>      
+
+        <div class="column has-text-centered">
+          <div class="publication-links">
+
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/2207.06324"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                </span>
+                <span>arXiv</span>
+              </a>
+            </span>
+
+
+            <span class="link-block">
+              <a href="https://ieeexplore.ieee.org/document/10191312/"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fas fa-file-alt"></i>
+                </span>
+                <span>Paper</span>
+              </a>
+            </span>
+
+
+            <span class="link-block">
+              <a href="https://github.com/ShenZheng2000/PointNorm-for-Point-Cloud-Analysis"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>
+
+          </div>
+        </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Model Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Overview of the proposed DualNorm in our PointNorm framework.
+          </p>
+          <ul>
+            <li>Sampling and Grouping</li>
+            <li><b>Point Normalization</b>: Normalize grouped points to sampled points</li>
+            <li><b>Reverse Point Normalization</b>: Normalize sampled points to grouped points</li>
+          </ul>
+          <p>
+            This addresses point cloud irregularity and facilitates learning for subsequent layers.
+          </p>
+          <img src="./static/images/Model_Figure/Model_Head.png"
+               class="publication-image"
+               alt="InstanceWarp for Domain Adaptation"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Standard Deviation Analysis</h2>
+        <div class="content has-text-justified">
+          <p>PointNorm's "push-and-pull" strategy for optimizing the point cloud density.</p>
+          <ul>
+            <li><b>When &Delta; &gt; 1</b> (left column), PointNorm pushes points apart, which increases the standard deviation and reduces the point cloud density.</li>
+            <li><b>When &Delta; &lt; 1</b> (right column), PointNorm pulls points together, which reduces the standard deviation and increases the point cloud density.</li>
+            <li><b>When &Delta; = 1</b> (middle column), no action is performed, and both the standard deviation and the point cloud density stay the same.</li>
+          </ul>
+          <img src="./static/images/Model_Figure/Model_Alpha.png"
+               class="publication-image"
+               alt="InstanceWarp for Domain Adaptation."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Model Architecture</h2>
+        <div class="content has-text-justified">
+          <p>
+            PointNorm for shape classification and part segmentation. Given an input point cloud, 
+            PointNorm embeds point features, uses sampling-grouping and DualNorm to normalize points,
+             and employs Residual Blocks to leverage hierarchical features for accurate classification and segmentation.
+          </p>
+          <img src="./static/images/Model_Figure/Model_WorkFlow.png"
+               class="publication-image"
+               alt="InstanceWarp for Domain Adaptation."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 custom-red">Visual Results: Semantic Segmentation</h2>
+        <div class="content has-text-justified">
+          <!-- First Row -->
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/pointnet2/snapshot01.png"
+                     class="publication-image"
+                     alt="Dark"/>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/pointner2_w_D/snapshot01.png"
+                     class="publication-image"
+                     alt="PIE"/>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/gt/snapshot01.png"
+                     class="publication-image"
+                     alt="Retinex-Net"/>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Second Row -->
+          <div class="image-gallery columns is-mobile" style="margin-top: 20px;">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/pointnet2/snapshot02.png"
+                     class="publication-image"
+                     alt="Zero-DCE"/>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/pointner2_w_D/snapshot02.png"
+                     class="publication-image"
+                     alt="SGZ (Ours)"/>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/gt/snapshot02.png"
+                     class="publication-image"
+                     alt="Ground Truth"/>
+              </figure>
+            </div>
+          </div>
+
+          <div class="image-gallery columns is-mobile" style="margin-top: 20px;">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/pointnet2/snapshot03.png"
+                     class="publication-image"
+                     alt="Zero-DCE"/>
+                <figcaption>PointNet++</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/pointner2_w_D/snapshot03.png"
+                     class="publication-image"
+                     alt="SGZ (Ours)"/>
+                <figcaption>PointNet++ (w/ DualNorm)</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Sem_Seg/gt/snapshot03.png"
+                     class="publication-image"
+                     alt="Ground Truth"/>
+                <figcaption>Ground Truth</figcaption>
+              </figure>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Source Code from <a href="https://nerfies.github.io">Nerfies</a>, <a href="https://humanoid-next-token-prediction.github.io/">Humanoid Next Token Prediction</a>, and 
+            <a href="https://instancewarp.github.io/">InstanceWarp</a>.   
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
